@@ -1,12 +1,12 @@
-cmake_minimum_required(VERSION 3.11)
+cmake_minimum_required(VERSION 3.14)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project (
-  "PROJECT_NAME"
+  "shush-file"
   VERSION 1.0.0
-  DESCRIPTION ""
+  DESCRIPTION "A file manager for my projects."
 )
 set (
   SOURCES
@@ -88,3 +88,11 @@ endif() # BUILD_TESTS
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # - - - - - - - - - - - - DEPENDENCIES- - - - - - - - - - - - - - - - - - - - -
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+add_subdirectory(submodules/shush-format)
+add_subdirectory(submodules/shush-dump)
+
+target_link_libraries(shush-dump shush-format)
+target_link_libraries(${PROJECT_NAME} shush-dump shush-format)
+
+include_directories(include)

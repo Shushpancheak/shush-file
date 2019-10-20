@@ -1,0 +1,6 @@
+[submodule "submodules/shush-dump"]
+	path = submodules/shush-dump
+	url = https://github.com/Shushpancheak/shush-dump
+[submodule "submodules/shush-format"]
+	path = submodules/shush-format
+	url = https://github.com/Shushpancheak/shush-format
