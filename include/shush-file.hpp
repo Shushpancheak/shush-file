@@ -27,6 +27,7 @@ public:
   ~File();
 
   void Write(const char* str);
+  void Write(const char* str, size_t bytes_count);
   void Read(char* out_str, size_t count);
   size_t GetFileSize();
 

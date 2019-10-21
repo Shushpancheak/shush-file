@@ -15,10 +15,20 @@ shush::file::File::~File() {
 
 
 void shush::file::File::Write(const char* str) {
-  int bytes_written = _write(_fileno(file_),
-                             str, MAXIMUM_CHARS_PER_WRITE);
+  const int bytes_written =
+      _write(_fileno(file_),
+             str, MAXIMUM_CHARS_PER_WRITE);
 
   UMASSERT(strlen(str) == bytes_written, COULD_NOT_WRITE_TO_FILE);
+}
+
+
+void shush::file::File::Write(const char* str, size_t bytes_count) {
+  const int bytes_written =
+      _write(_fileno(file_),
+             str, bytes_count);
+
+  UMASSERT(bytes_count == bytes_written, COULD_NOT_WRITE_TO_FILE);
 }
 
 
