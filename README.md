@@ -1,5 +1,5 @@
 # shush::file
-A file manager for my projects. Has standart version that takes advantage of shush::dump's exceptions and no exception version.
+A file manager for my projects. Takes advantage of shush::dump's exceptions for better error handling.
 
 cmake .. # "-UBUILD_TESTS -DBUILD_TESTS=ON" to build tests, "-ULIBRARY_TYPE -DLIBRARY_TYPE=SHARED" for building shared library
 make
