@@ -89,10 +89,10 @@ endif() # BUILD_TESTS
 # - - - - - - - - - - - - DEPENDENCIES- - - - - - - - - - - - - - - - - - - - -
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-add_subdirectory(submodules/shush-format)
-add_subdirectory(submodules/shush-dump)
-
-target_link_libraries(shush-dump shush-format)
-target_link_libraries(${PROJECT_NAME} shush-dump shush-format)
-
-include_directories(include)
+#add_subdirectory(submodules/shush-format)
+#add_subdirectory(submodules/shush-dump)
+#
+#target_link_libraries(shush-dump shush-format)
+#target_link_libraries(${PROJECT_NAME} shush-dump shush-format)
+#
+#include_directories(include)

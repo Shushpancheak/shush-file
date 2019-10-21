@@ -24,8 +24,9 @@ public:
   void Read(char* out_str, size_t count);
   size_t GetFileSize();
 
-private:
   void Ok();
+
+private:
   char* GetDumpMessage(int error_code);
   char* GetErrorName(int error_code);
 
