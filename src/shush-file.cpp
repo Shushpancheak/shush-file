@@ -9,6 +9,11 @@ shush::file::File::File(const char* file_name, const char* mode) {
 }
 
 
+shush::file::File::~File() {
+  fclose(file_);
+}
+
+
 void shush::file::File::Write(const char* str) {
   int bytes_written = _write(_fileno(file_),
                              str, MAXIMUM_CHARS_PER_WRITE);

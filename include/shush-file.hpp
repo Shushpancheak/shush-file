@@ -24,6 +24,7 @@ enum Errc {
 class File {
 public:
   File(const char* file_name, const char* mode);
+  ~File();
 
   void Write(const char* str);
   void Read(char* out_str, size_t count);
