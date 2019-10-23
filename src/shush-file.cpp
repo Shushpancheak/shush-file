@@ -2,9 +2,12 @@
 
 
 shush::file::File::File(const char* file_name, const char* mode) {
-  UMASSERT(!file_name, NO_FILE_NAME_GIVEN);
+  UMASSERT(file_name, NO_FILE_NAME_GIVEN);
   UMASSERT(strlen(file_name), NO_FILE_NAME_GIVEN);
   file_ = fopen(file_name, mode);
+
+  strcpy(file_name_, file_name);
+
   UMASSERT(!file_, COULD_NOT_OPEN_FILE);
 }
 
@@ -19,7 +22,8 @@ void shush::file::File::Write(const char* str) {
       _write(_fileno(file_),
              str, MAXIMUM_CHARS_PER_WRITE);
 
-  UMASSERT(strlen(str) == bytes_written, COULD_NOT_WRITE_TO_FILE);
+  UMASSERT(bytes_written >= 0, COULD_NOT_WRITE_TO_FILE);
+  UMASSERT(strlen(str) == static_cast<size_t>(bytes_written), COULD_NOT_WRITE_TO_FILE);
 }
 
 
@@ -28,7 +32,8 @@ void shush::file::File::Write(const char* str, size_t bytes_count) {
       _write(_fileno(file_),
              str, bytes_count);
 
-  UMASSERT(bytes_count == bytes_written, COULD_NOT_WRITE_TO_FILE);
+  UMASSERT(bytes_written >= 0, COULD_NOT_WRITE_TO_FILE);
+  UMASSERT(bytes_count == static_cast<size_t>(bytes_written), COULD_NOT_WRITE_TO_FILE);
 }
 
 
@@ -49,8 +54,16 @@ size_t shush::file::File::GetFileSize() {
 }
 
 
+size_t shush::file::File::GetCurrentFilePos() {
+  const long res = ftell(file_);
+  UMASSERT(res >= 0, LOST_ACCESS_TO_A_FILE);
+
+  return static_cast<size_t>(res);
+}
+
+
 void shush::file::File::Ok() {
-  MASSERT(!file_, LOST_ACCESS_TO_A_FILE); //
+  MASSERT(file_, LOST_ACCESS_TO_A_FILE); //
   MASSERT(_fileno(file_) > 1, LOST_ACCESS_TO_A_FILE);
 }
 

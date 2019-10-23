@@ -30,6 +30,7 @@ public:
   void Write(const char* str, size_t bytes_count);
   void Read(char* out_str, size_t count);
   size_t GetFileSize();
+  size_t GetCurrentFilePos();
 
   void Ok();
 
@@ -38,7 +39,7 @@ private:
   char* GetErrorName(int error_code);
 
   FILE* file_;
-  char file_name_[MAXIMUM_FILE_NAME];
+  char file_name_[MAXIMUM_FILE_NAME] {};
 };
 
 }
