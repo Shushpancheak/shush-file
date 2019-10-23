@@ -14,11 +14,11 @@ static char error_name_container[MAXIMUM_FILE_NAME] {};
 static char dump_msg_container[MAXIMUM_FILE_NAME]   {};
 
 enum Errc {
-  COULD_NOT_OPEN_FILE      = 0,
-  LOST_ACCESS_TO_A_FILE    = 1,
-  COULD_NOT_READ_FROM_FILE = 2,
-  NO_FILE_NAME_GIVEN       = 3,
-  COULD_NOT_WRITE_TO_FILE  = 4
+  COULD_NOT_OPEN_FILE,
+  LOST_ACCESS_TO_THE_FILE,
+  COULD_NOT_READ_FROM_FILE,
+  NO_FILE_NAME_GIVEN,
+  COULD_NOT_WRITE_TO_FILE 
 };
 
 class File {

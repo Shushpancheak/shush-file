@@ -56,15 +56,15 @@ size_t shush::file::File::GetFileSize() {
 
 size_t shush::file::File::GetCurrentFilePos() {
   const long res = ftell(file_);
-  UMASSERT(res >= 0, LOST_ACCESS_TO_A_FILE);
+  UMASSERT(res >= 0, LOST_ACCESS_TO_THE_FILE);
 
   return static_cast<size_t>(res);
 }
 
 
 void shush::file::File::Ok() {
-  MASSERT(file_, LOST_ACCESS_TO_A_FILE); //
-  MASSERT(_fileno(file_) > 1, LOST_ACCESS_TO_A_FILE);
+  MASSERT(file_, LOST_ACCESS_TO_THE_FILE);
+  MASSERT(_fileno(file_) > 1, LOST_ACCESS_TO_THE_FILE);
 }
 
 
@@ -80,7 +80,7 @@ char* shush::file::File::GetErrorName(int error_code) {
       strcpy(error_name_container, "Could not open file with given name");
       break;
     }
-    case LOST_ACCESS_TO_A_FILE : {
+    case LOST_ACCESS_TO_THE_FILE : {
       strcpy(error_name_container, "Lost access to the file");
       break;
     }
