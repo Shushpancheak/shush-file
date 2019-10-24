@@ -43,6 +43,11 @@ void shush::file::File::Read(char* out_str, size_t count) {
 }
 
 
+void shush::file::File::SetFilePos(size_t byte) {
+  UMASSERT(fseek(file_, byte, 0) == 0, SEEK_FAIL);
+}
+
+
 size_t shush::file::File::GetFileSize() {
   VERIFIED
   struct stat file_stat {};
@@ -90,6 +95,9 @@ char* shush::file::File::GetErrorName(int error_code) {
     }
     case COULD_NOT_WRITE_TO_FILE : {
       strcpy(error_name_container, "Could not write to the file");
+    }
+    case SEEK_FAIL : {
+      strcpy(error_name_container, "fseek failed");
     }
     default : {
       strcpy(error_name_container, "Unknown error");

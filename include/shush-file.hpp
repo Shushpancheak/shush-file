@@ -18,7 +18,8 @@ enum Errc {
   LOST_ACCESS_TO_THE_FILE,
   COULD_NOT_READ_FROM_FILE,
   NO_FILE_NAME_GIVEN,
-  COULD_NOT_WRITE_TO_FILE 
+  COULD_NOT_WRITE_TO_FILE,
+  SEEK_FAIL
 };
 
 class File {
@@ -29,6 +30,8 @@ public:
   void Write(const char* str);
   void Write(const char* str, size_t bytes_count);
   void Read(char* out_str, size_t count);
+  void SetFilePos(size_t byte);
+
   size_t GetFileSize();
   size_t GetCurrentFilePos();
 
