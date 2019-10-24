@@ -19,8 +19,7 @@ shush::file::File::~File() {
 
 void shush::file::File::Write(const char* str) {
   const int bytes_written =
-      _write(_fileno(file_),
-             str, MAXIMUM_CHARS_PER_WRITE);
+      fwrite(str, sizeof(char), strlen(str), file_);
 
   UMASSERT(bytes_written >= 0, COULD_NOT_WRITE_TO_FILE);
   UMASSERT(strlen(str) == static_cast<size_t>(bytes_written), COULD_NOT_WRITE_TO_FILE);
@@ -29,8 +28,7 @@ void shush::file::File::Write(const char* str) {
 
 void shush::file::File::Write(const char* str, size_t bytes_count) {
   const int bytes_written =
-      _write(_fileno(file_),
-             str, bytes_count);
+      fwrite(str, sizeof(char), bytes_count, file_);
 
   UMASSERT(bytes_written >= 0, COULD_NOT_WRITE_TO_FILE);
   UMASSERT(bytes_count == static_cast<size_t>(bytes_written), COULD_NOT_WRITE_TO_FILE);
