@@ -8,7 +8,7 @@ shush::file::File::File(const char* file_name, const char* mode) {
 
   strcpy(file_name_, file_name);
 
-  UMASSERT(!file_, COULD_NOT_OPEN_FILE);
+  UMASSERT(file_, COULD_NOT_OPEN_FILE);
 }
 
 
