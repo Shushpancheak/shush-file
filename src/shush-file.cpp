@@ -5,6 +5,7 @@ shush::file::File::File(const char* file_name, const char* mode) {
   UMASSERT(file_name, NO_FILE_NAME_GIVEN);
   UMASSERT(strlen(file_name), NO_FILE_NAME_GIVEN);
   file_ = fopen(file_name, mode);
+  setvbuf(file_, nullptr, _IONBF, 0);
 
   strcpy(file_name_, file_name);
 
